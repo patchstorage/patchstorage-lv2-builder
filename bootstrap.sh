@@ -106,12 +106,14 @@ if [ ! -d ${BUILD_DIR}/${BUILDROOT_VERSION} ]; then
 
   tar xf ${DOWNLOAD_DIR}/${BUILDROOT_FILE} -C ${BUILD_DIR}
 
-  patch -d ${BUILD_DIR}/${BUILDROOT_VERSION} -p1 -i ${SOURCE_DIR}/patches/buildroot-2016.02/001_aarch64-and-cortex-a53.patch
-  patch -d ${BUILD_DIR}/${BUILDROOT_VERSION} -p1 -i ${SOURCE_DIR}/patches/buildroot-2016.02/002_cortex-a35.patch
-  patch -d ${BUILD_DIR}/${BUILDROOT_VERSION} -p1 -i ${SOURCE_DIR}/patches/buildroot-2016.02/003_gcc-7.patch
-  patch -d ${BUILD_DIR}/${BUILDROOT_VERSION} -p1 -i ${SOURCE_DIR}/patches/buildroot-2016.02/004_static-toolchain.patch
-  patch -d ${BUILD_DIR}/${BUILDROOT_VERSION} -p1 -i ${SOURCE_DIR}/patches/buildroot-2016.02/005_cortex-a72.patch
-  patch -d ${BUILD_DIR}/${BUILDROOT_VERSION} -p1 -i ${SOURCE_DIR}/patches/buildroot-2016.02/006_updated-toolchain-2022.patch
+  if [ "${BUILDROOT_VERSION}" == "buildroot-2016.02" ]; then
+    patch -d ${BUILD_DIR}/${BUILDROOT_VERSION} -p1 -i ${SOURCE_DIR}/patches/buildroot-2016.02/001_aarch64-and-cortex-a53.patch
+    patch -d ${BUILD_DIR}/${BUILDROOT_VERSION} -p1 -i ${SOURCE_DIR}/patches/buildroot-2016.02/002_cortex-a35.patch
+    patch -d ${BUILD_DIR}/${BUILDROOT_VERSION} -p1 -i ${SOURCE_DIR}/patches/buildroot-2016.02/003_gcc-7.patch
+    patch -d ${BUILD_DIR}/${BUILDROOT_VERSION} -p1 -i ${SOURCE_DIR}/patches/buildroot-2016.02/004_static-toolchain.patch
+    patch -d ${BUILD_DIR}/${BUILDROOT_VERSION} -p1 -i ${SOURCE_DIR}/patches/buildroot-2016.02/005_cortex-a72.patch
+    patch -d ${BUILD_DIR}/${BUILDROOT_VERSION} -p1 -i ${SOURCE_DIR}/patches/buildroot-2016.02/006_updated-toolchain-2022.patch
+  fi
 fi
 
 #######################################################################################################################
@@ -132,14 +134,17 @@ cd ${BUILD_DIR}/${BUILDROOT_VERSION}
 #######################################################################################################################
 # patching buildroot packages
 
-for dir in `ls ${SOURCE_DIR}/global-packages`; do
-  rm -rf package/${dir}
-  cp -r ${SOURCE_DIR}/global-packages/${dir} package/${dir}
-done
+if [ "${BUILDROOT_VERSION}" == "buildroot-2016.02" ]; then
+  for dir in `ls ${SOURCE_DIR}/global-packages`; do
+    rm -rf package/${dir}
+    cp -r ${SOURCE_DIR}/global-packages/${dir} package/${dir}
+  done
 
-for dir in `ls ${SOURCE_DIR}/patches/packages`; do
-  cp ${SOURCE_DIR}/patches/packages/${dir}/*.patch package/${dir}/
-done
+  for dir in `ls ${SOURCE_DIR}/patches/packages`; do
+    mkdir -p package/${dir}
+    cp ${SOURCE_DIR}/patches/packages/${dir}/*.patch package/${dir}/
+  done
+fi
 
 #######################################################################################################################
 # fix missing shared libs

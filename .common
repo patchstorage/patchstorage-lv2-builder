@@ -76,6 +76,8 @@ if [ "${TOOLCHAIN_PLATFORM}" == "moddwarf-new" ]; then
     CT_NG_VERSION=crosstool-ng-1.25.0
 elif [ "${TOOLCHAIN_PLATFORM}" == "modduo" ] || [ "${TOOLCHAIN_PLATFORM}" == "modduox" ]; then
     CT_NG_VERSION=crosstool-ng-1.22.0
+elif [ "${TOOLCHAIN_PLATFORM}" == "raspberrypi4_armv8" ]; then
+    CT_NG_VERSION=crosstool-ng-1.25.0
 else
     CT_NG_VERSION=crosstool-ng-1.24.0
 fi
@@ -86,11 +88,16 @@ CT_NG_FILE=${CT_NG_VERSION}.tar.bz2
 # buildroot variables
 
 BUILDROOT_LINK=http://buildroot.uclibc.org/downloads/
-BUILDROOT_VERSION=buildroot-2016.02
-BUILDROOT_FILE=${BUILDROOT_VERSION}.tar.bz2
+if [ "${TOOLCHAIN_PLATFORM}" == "raspberrypi4_armv8" ]; then
+    BUILDROOT_VERSION=buildroot-2022.02.5
+    BUILDROOT_FILE=${BUILDROOT_VERSION}.tar.xz
+else
+    BUILDROOT_VERSION=buildroot-2016.02
+    BUILDROOT_FILE=${BUILDROOT_VERSION}.tar.bz2
+fi
 
 SOURCE_DIR=$("${readlink}" -f $(dirname $0))
-BR2_MAKE="make O=${WORKDIR}/${PLATFORM} BR2_EXTERNAL=${SOURCE_DIR}/plugins-dep -j${PARALLEL_JOBS}"
+BR2_MAKE="make O=${WORKDIR}/${PLATFORM} BR2_EXTERNAL=${SOURCE_DIR}/plugins-dep BR2_EXTERNAL_MOD_PLUGIN_BUILDER_PATH=${SOURCE_DIR}/plugins-dep -j${PARALLEL_JOBS}"
 BR2_TARGET=${WORKDIR}/${PLATFORM}/target
 
 #######################################################################################################################
