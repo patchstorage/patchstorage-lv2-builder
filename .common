@@ -76,7 +76,7 @@ if [ "${TOOLCHAIN_PLATFORM}" == "moddwarf-new" ]; then
     CT_NG_VERSION=crosstool-ng-1.25.0
 elif [ "${TOOLCHAIN_PLATFORM}" == "modduo" ] || [ "${TOOLCHAIN_PLATFORM}" == "modduox" ]; then
     CT_NG_VERSION=crosstool-ng-1.22.0
-elif [ "${TOOLCHAIN_PLATFORM}" == "raspberrypi4_armv8" ]; then
+elif [ "${TOOLCHAIN_PLATFORM}" == "raspberrypi3_armv8" ] || [ "${TOOLCHAIN_PLATFORM}" == "raspberrypi4_armv8" ]; then
     CT_NG_VERSION=crosstool-ng-1.25.0
 else
     CT_NG_VERSION=crosstool-ng-1.24.0
@@ -88,7 +88,7 @@ CT_NG_FILE=${CT_NG_VERSION}.tar.bz2
 # buildroot variables
 
 BUILDROOT_LINK=http://buildroot.uclibc.org/downloads/
-if [ "${TOOLCHAIN_PLATFORM}" == "raspberrypi4_armv8" ]; then
+if [ "${TOOLCHAIN_PLATFORM}" == "raspberrypi3_armv8" ] || [ "${TOOLCHAIN_PLATFORM}" == "raspberrypi4_armv8" ]; then
     BUILDROOT_VERSION=buildroot-2022.02.5
     BUILDROOT_FILE=${BUILDROOT_VERSION}.tar.xz
 else
