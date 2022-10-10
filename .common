@@ -89,7 +89,7 @@ CT_NG_FILE=${CT_NG_VERSION}.tar.bz2
 
 BUILDROOT_LINK=http://buildroot.uclibc.org/downloads/
 if [ "${TOOLCHAIN_PLATFORM}" == "raspberrypi3_armv8" ] || [ "${TOOLCHAIN_PLATFORM}" == "raspberrypi4_armv8" ]; then
-    BUILDROOT_VERSION=buildroot-2022.02.5
+    BUILDROOT_VERSION=buildroot-2021.11.3
     BUILDROOT_FILE=${BUILDROOT_VERSION}.tar.xz
 else
     BUILDROOT_VERSION=buildroot-2016.02
