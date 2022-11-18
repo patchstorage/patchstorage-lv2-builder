@@ -1,0 +1,11 @@
+#!/bin/sh
+
+. ./.docker
+
+for i in download $DOCKER_PLATFORMS; do
+	if [ -n "$i" ] && [ -e "plugins-dep/configs/${i}_defconfig" ]; then
+		mkdir -p docker-workdir/$i
+	fi
+done
+
+docker compose pull $DOCKER_PLATFORMS

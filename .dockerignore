@@ -1,0 +1,4 @@
+.git/objects/*
+.git/modules/lv2-data-creative-commons/objects/*
+.git/modules/mod-lv2-data/objects/*
+docker-workdir/*

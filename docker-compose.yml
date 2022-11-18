@@ -1,0 +1,75 @@
+version: "3.9"
+services:
+  x86_64:
+    image: blokas/mpb-x86_64:latest
+    build:
+      context: .
+      args:
+        MPB_PLATFORM: x86_64
+    volumes:
+      - type: volume
+        source: mpb
+        target: /home/builder/mod-plugin-builder
+        volume:
+          nocopy: true
+      - download:/home/builder/mod-workdir/download
+      - plugins_x86_64:/home/builder/mod-workdir/x86_64/plugins
+  raspberrypi3_armv8:
+    image: blokas/mpb-raspberrypi3_armv8:latest
+    build:
+      context: .
+      args:
+        MPB_PLATFORM: raspberrypi3_armv8
+    volumes:
+      - type: volume
+        source: mpb
+        target: /home/builder/mod-plugin-builder
+        volume:
+          nocopy: true
+      - download:/home/builder/mod-workdir/download
+      - plugins_raspberrypi3_armv8:/home/builder/mod-workdir/raspberrypi3_armv8/plugins
+  raspberrypi4_aarch64:
+    image: blokas/mpb-raspberrypi4_aarch64:latest
+    build:
+      context: .
+      args:
+        MPB_PLATFORM: raspberrypi4_aarch64
+    volumes:
+      - type: volume
+        source: mpb
+        target: /home/builder/mod-plugin-builder
+        volume:
+          nocopy: true
+      - download:/home/builder/mod-workdir/download
+      - plugins_raspberrypi4_aarch64:/home/builder/mod-workdir/raspberrypi4_aarch64/plugins
+volumes:
+  mpb:
+    driver: local
+    driver_opts:
+      type: 'none'
+      o: 'bind'
+      device: '${PWD}'
+  download:
+    driver: local
+    driver_opts:
+      type: 'none'
+      o: 'bind'
+      device: '${PWD}/docker-workdir/download'
+  plugins_x86_64:
+    driver: local
+    driver_opts:
+      type: 'none'
+      o: 'bind'
+      device: '${PWD}/docker-workdir/x86_64'
+  plugins_raspberrypi3_armv8:
+    driver: local
+    driver_opts:
+      type: 'none'
+      o: 'bind'
+      device: '${PWD}/docker-workdir/raspberrypi3_armv8'
+  plugins_raspberrypi4_aarch64:
+    driver: local
+    driver_opts:
+      type: 'none'
+      o: 'bind'
+      device: '${PWD}/docker-workdir/raspberrypi4_aarch64'
