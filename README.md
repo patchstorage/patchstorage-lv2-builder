@@ -1,6 +1,74 @@
 mod-plugin-builder
 ==================
 
+# Building through Docker (recommended)
+
+## Requirements
+
+* Linux or Mac OS based computer (or Linux running in a VM)
+* Latest Docker Desktop or Docker Engine set up on your platform (https://docs.docker.com/get-docker/)
+* Docker Compose plugin (https://docs.docker.com/compose/install/)
+* git
+
+In order to verify your environment is ready to go, running the following commands should give no errors:
+
+```
+git
+docker image ls
+```
+
+## Initial setup
+
+Clone this repository and its submodules:
+
+```
+git clone https://github.com/BlokasLabs/mod-plugin-builder
+cd mod-plugin-builder
+
+git submodule init
+git submodule update
+
+# Run the below script to pull Mod Plugin Builder precompiled images.
+./docker-init
+```
+
+## Building plugins with Docker
+
+Run `./docker-build <platform> <plugin_name>` to trigger a build of a plugin.
+
+* `<platform>` is one of `x86_64`, `raspberrypi3_armv8`, `raspberrypi4_aarch64`.
+* `<plugin_name>` must match the folder name as in `plugins/package/` directory.
+* Build results go to `docker-workdir/<platform>/`.
+
+For example:
+
+```
+./docker-build raspberrypi3_armv8 abgate
+```
+
+The build results will be in `docker-workdir/raspberrypi3_armv8/abGate.lv2`
+
+## Building plugins for all supported platforms with Docker
+
+Run `./docker-build-all <plugin_name>` to trigger builds on every supported platform.
+
+* `<plugin_name>` must match the folder name as in `plugins/package/` directory.
+* Build results go to `docker-workdir/<platform>/`.
+
+For example:
+
+```
+./docker-build-all abgate
+```
+
+The build results will be in:
+
+* `docker-workdir/x86_64/abGate.lv2`
+* `docker-workdir/raspberrypi3_armv8/abGate.lv2`
+* `docker-workdir/raspberrypi4_aarch64/abGate.lv2`
+
+==================
+
 This repository contains the toolchain and libraries used in MOD Devices.
 
 It allows developers to locally build plugins for MOD devices and also prepare for Cloud builds.<br/>
