@@ -1,7 +1,7 @@
 version: "3.9"
 services:
   x86_64:
-    image: blokas/mpb-x86_64:latest
+    image: patchstorage/mpb-x86_64:latest
     build:
       context: .
       args:
@@ -18,7 +18,7 @@ services:
       - download:/home/builder/mod-workdir/download
       - plugins_x86_64:/home/builder/mod-workdir/x86_64/plugins
   raspberrypi3_armv8:
-    image: blokas/mpb-raspberrypi3_armv8:latest
+    image: patchstorage/mpb-raspberrypi3_armv8:latest
     build:
       context: .
       args:
@@ -35,7 +35,7 @@ services:
       - download:/home/builder/mod-workdir/download
       - plugins_raspberrypi3_armv8:/home/builder/mod-workdir/raspberrypi3_armv8/plugins
   raspberrypi4_aarch64:
-    image: blokas/mpb-raspberrypi4_aarch64:latest
+    image: patchstorage/mpb-raspberrypi4_aarch64:latest
     build:
       context: .
       args:

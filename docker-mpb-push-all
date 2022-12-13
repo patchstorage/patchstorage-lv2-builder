@@ -1,0 +1,8 @@
+#!/bin/sh
+
+# You should have a builder set up consisting of one node natively building amd64 and one arm64.
+# Otherwise, the build would take forever and simply time out.
+
+for i in raspberrypi4_aarch64 raspberrypi3_armv8 x86_64; do
+	docker buildx build --build-arg MPB_PLATFORM=$i --platform=linux/arm64,linux/amd64 -t patchstorage/mpb-${i}:latest --push .
+done
