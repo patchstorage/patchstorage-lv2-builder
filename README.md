@@ -1,7 +1,9 @@
-mod-plugin-builder
+patchstorage-lv2-builder
 ==================
 
 # Building through Docker (recommended)
+
+The Docker builder images are available on https://hub.docker.com/repositories/patchstorage, and are pulled by the `./docker-init` script as shown in Initial setup section.
 
 ## Requirements
 
@@ -22,13 +24,14 @@ docker image ls
 Clone this repository and its submodules:
 
 ```
-git clone https://github.com/BlokasLabs/mod-plugin-builder
-cd mod-plugin-builder
+git clone https://github.com/patchstorage/patchstorage-lv2-builder
+cd pathstorage-lv2-builder
 
+# Don't forget to get the submodules, or plugin builds will fail!
 git submodule init
 git submodule update
 
-# Run the below script to pull Mod Plugin Builder precompiled images.
+# Run the below script to pull the precompiled images.
 ./docker-init
 ```
 
@@ -69,11 +72,7 @@ The build results will be in:
 
 ==================
 
-This repository contains the toolchain and libraries used in MOD Devices.
-
-It allows developers to locally build plugins for MOD devices and also prepare for Cloud builds.<br/>
-Currently this builder only supports Linux hosts.<br/>
-If you're not running Linux see this [HowTo](http://wiki.moddevices.com/wiki/How_To_Use_Docker_Toolbox_With_MPB).
+This repository contains buildscripts for the toolchain and libraries to build LV2 plugins to run on MOD software.
 
 There are several dependencies:
  - gcc & g++
@@ -107,7 +106,7 @@ automake binutils build-essential cpio libtool libncurses-dev pkg-config python-
 Note that `libtool-bin` and `python-is-python3` are not available on old distros.<br/>
 If that is the case for you, simply skip these packages but install everything else.
 
-To begin simply run the bootstrap.sh script with either modduo, modduox, moddwarf or x86_64 as argument.<br/>
+To begin simply run the bootstrap.sh, it will print out a list of available platforms that can be used as an argument.<br/>
 The bootstrap.sh script will build the toolchain (ct-ng) and buildroot.<br/>
 Depending on your machine it can take more than 1 hour.<br/>
 
@@ -124,7 +123,7 @@ To build a plugin, run:<br/>
 ./build <platform> <plugin-package>
 ```
 
-Where `platform` is either modduo, modduox, moddwarf or x86_64 and `plugin-package` is a folder inside the `plugins/package` directory.
+Where `platform` is one of the available platforms `plugin-package` is a folder inside the `plugins/package` directory.
 
 If everything goes well, you will have the final plugin bundle in `~/mod-workdir/<platform>/plugins`.<br/>
 
@@ -149,15 +148,9 @@ git submodule init
 git submodule update
 ```
 
-To cleanup the build of a plugin, run:<br/>
-```./build <platform> <plugin-package>-dirclean```
-
-
-There's a more detailed [HowTo](http://wiki.moddevices.com/wiki/How_To_Build_and_Deploy_LV2_Plugin_to_MOD_Duo) explaining how to compile an LV2 Plugin using mod-plugin-builder.
-
 ### Validating plugins (experimental)
 
-It's possible to use the mod-plugin-builder to test a few aspects of a plugin. It's important that the plugin has been built successfully before running this test. 
+It's possible to test a few aspects of a plugin. It's important that the plugin has been built successfully before running this test. 
 
 Firstly, the test can be used for ttl syntax validation. This is done through lv2/sord_validate.
 These tools need to be installed on the system. 
@@ -178,8 +171,3 @@ For running this test do:<br/>
 ```
 VALGRIND=1 ./validate <platform> <plugin-package>
 ```
-
-### Note about Camomile
-
-The Camomile integration is under testing phase. Check the [PR notes](https://github.com/moddevices/mod-plugin-builder/pull/28) for more details. 
-
