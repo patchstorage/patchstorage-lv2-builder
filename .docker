@@ -1,3 +1,3 @@
 : "${DOCKER_PLATFORMS:=x86_64 raspberrypi3_armv8 raspberrypi4_aarch64}"
 
-DOCKER_IMG_PREFIX="blokas/mpb-"
+. ./.env

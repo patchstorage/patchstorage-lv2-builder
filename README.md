@@ -110,7 +110,7 @@ To begin simply run the bootstrap.sh, it will print out a list of available plat
 The bootstrap.sh script will build the toolchain (ct-ng) and buildroot.<br/>
 Depending on your machine it can take more than 1 hour.<br/>
 
-All files will be installed in `~/mod-workdir`.<br/>
+All files will be installed in `~/lv2-workdir`.<br/>
 Set the 'WORKDIR' environment variable before bootstraping if you wish to change that.
 
 After the bootstrap process is complete, you can start building plugins.<br/>
@@ -125,7 +125,7 @@ To build a plugin, run:<br/>
 
 Where `platform` is one of the available platforms `plugin-package` is a folder inside the `plugins/package` directory.
 
-If everything goes well, you will have the final plugin bundle in `~/mod-workdir/<platform>/plugins`.<br/>
+If everything goes well, you will have the final plugin bundle in `~/lv2-workdir/<platform>/plugins`.<br/>
 
 To push the build plugin onto a MOD Device, run:<br/>
 ```
@@ -133,7 +133,7 @@ To push the build plugin onto a MOD Device, run:<br/>
 ```
 Or if you feel like doing it manually, you can run something like:
 ```
-cd /path/to/mod-workdir/plugins # adjust as needed
+cd /path/to/lv2-workdir/plugins # adjust as needed
 tar czf bundle1.lv2 bundle2.lv2 | base64 | curl -F 'package=@-' http://192.168.51.1/sdk/install; echo
 ```
 

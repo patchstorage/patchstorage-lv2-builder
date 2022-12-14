@@ -16,16 +16,16 @@ RUN apt-get update && apt-get upgrade -qy && apt-get install -qy $REQUIRED_PKGS 
     echo "source /etc/bash_completion" >> $HOME/.bashrc
 
 USER $USER
-COPY . $HOME/mod-plugin-builder
-WORKDIR $HOME/mod-plugin-builder
+COPY . $HOME/patchstorage-lv2-builder
+WORKDIR $HOME/patchstorage-lv2-builder
 
 # Must not be named "PLATFORM" in order not to clash with buildroot.
-ARG MPB_PLATFORM
+ARG LV2_BUILDER_PLATFORM
 
 # Below step is useful for debugging buildroot build failures,
 # so it can be debugged without rebuilding the toolchain every time.
-#RUN ./bootstrap.sh $MPB_PLATFORM toolchain
+#RUN ./bootstrap.sh $LV2_BUILDER_PLATFORM toolchain
 
-RUN ./bootstrap.sh $MPB_PLATFORM && ./.clean-install.sh $MPB_PLATFORM
+RUN ./bootstrap.sh $LV2_BUILDER_PLATFORM && ./.clean-install.sh $LV2_BUILDER_PLATFORM
 
 CMD ["bash"]

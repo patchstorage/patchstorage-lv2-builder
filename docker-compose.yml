@@ -1,58 +1,58 @@
 version: "3.9"
 services:
   x86_64:
-    image: patchstorage/mpb-x86_64:latest
+    image: ${DOCKER_ORGANIZATION}/${DOCKER_IMG_PREFIX}x86_64:latest
     build:
       context: .
       args:
-        MPB_PLATFORM: x86_64
+        LV2_BUILDER_PLATFORM: x86_64
       platforms:
         - "linux/amd64"
         - "linux/arm64"
     volumes:
       - type: volume
-        source: mpb
-        target: /home/builder/mod-plugin-builder
+        source: lv2_builder
+        target: /home/builder/patchstorage-lv2-builder
         volume:
           nocopy: true
-      - download:/home/builder/mod-workdir/download
-      - plugins_x86_64:/home/builder/mod-workdir/x86_64/plugins
+      - download:/home/builder/lv2-workdir/download
+      - plugins_x86_64:/home/builder/lv2-workdir/x86_64/plugins
   raspberrypi3_armv8:
-    image: patchstorage/mpb-raspberrypi3_armv8:latest
+    image: ${DOCKER_ORGANIZATION}/${DOCKER_IMG_PREFIX}raspberrypi3_armv8:latest
     build:
       context: .
       args:
-        MPB_PLATFORM: raspberrypi3_armv8
+        LV2_BUILDER_PLATFORM: raspberrypi3_armv8
       platforms:
         - "linux/amd64"
         - "linux/arm64"
     volumes:
       - type: volume
-        source: mpb
-        target: /home/builder/mod-plugin-builder
+        source: lv2_builder
+        target: /home/builder/patchstorage-lv2-builder
         volume:
           nocopy: true
-      - download:/home/builder/mod-workdir/download
-      - plugins_raspberrypi3_armv8:/home/builder/mod-workdir/raspberrypi3_armv8/plugins
+      - download:/home/builder/lv2-workdir/download
+      - plugins_raspberrypi3_armv8:/home/builder/lv2-workdir/raspberrypi3_armv8/plugins
   raspberrypi4_aarch64:
-    image: patchstorage/mpb-raspberrypi4_aarch64:latest
+    image: ${DOCKER_ORGANIZATION}/${DOCKER_IMG_PREFIX}raspberrypi4_aarch64:latest
     build:
       context: .
       args:
-        MPB_PLATFORM: raspberrypi4_aarch64
+        LV2_BUILDER_PLATFORM: raspberrypi4_aarch64
       platforms:
         - "linux/amd64"
         - "linux/arm64"
     volumes:
       - type: volume
-        source: mpb
-        target: /home/builder/mod-plugin-builder
+        source: lv2_builder
+        target: /home/builder/patchstorage-lv2-builder
         volume:
           nocopy: true
-      - download:/home/builder/mod-workdir/download
-      - plugins_raspberrypi4_aarch64:/home/builder/mod-workdir/raspberrypi4_aarch64/plugins
+      - download:/home/builder/lv2-workdir/download
+      - plugins_raspberrypi4_aarch64:/home/builder/lv2-workdir/raspberrypi4_aarch64/plugins
 volumes:
-  mpb:
+  lv2_builder:
     driver: local
     driver_opts:
       type: 'none'
