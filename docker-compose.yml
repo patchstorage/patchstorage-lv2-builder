@@ -17,6 +17,7 @@ services:
           nocopy: true
       - download:/home/builder/lv2-workdir/download
       - plugins_x86_64:/home/builder/lv2-workdir/x86_64/plugins
+      - workdir_x86_64:/home/builder/lv2-workdir/x86_64
   raspberrypi3_armv8:
     image: ${DOCKER_ORGANIZATION}/${DOCKER_IMG_PREFIX}raspberrypi3_armv8:latest
     build:
@@ -34,6 +35,7 @@ services:
           nocopy: true
       - download:/home/builder/lv2-workdir/download
       - plugins_raspberrypi3_armv8:/home/builder/lv2-workdir/raspberrypi3_armv8/plugins
+      - workdir_raspberrypi3_armv8:/home/builder/lv2-workdir/raspberrypi3_armv8
   raspberrypi4_aarch64:
     image: ${DOCKER_ORGANIZATION}/${DOCKER_IMG_PREFIX}raspberrypi4_aarch64:latest
     build:
@@ -51,6 +53,7 @@ services:
           nocopy: true
       - download:/home/builder/lv2-workdir/download
       - plugins_raspberrypi4_aarch64:/home/builder/lv2-workdir/raspberrypi4_aarch64/plugins
+      - workdir_raspberrypi4_aarch64:/home/builder/lv2-workdir/raspberrypi4_aarch64
 volumes:
   lv2_builder:
     driver: local
@@ -82,3 +85,6 @@ volumes:
       type: 'none'
       o: 'bind'
       device: '${PWD}/docker-workdir/raspberrypi4_aarch64'
+  workdir_x86_64:
+  workdir_raspberrypi3_armv8:
+  workdir_raspberrypi4_aarch64:

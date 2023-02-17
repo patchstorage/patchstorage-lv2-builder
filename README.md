@@ -70,6 +70,16 @@ The build results will be in:
 * `docker-workdir/raspberrypi3_armv8/abGate.lv2`
 * `docker-workdir/raspberrypi4_aarch64/abGate.lv2`
 
+## Cleanup
+
+To clean up in order to regain disk space, destroy the working volumes and delete `docker-workdir`:
+
+
+```
+docker compose down -vvv
+rm -rf docker-workdir
+```
+
 ==================
 
 This repository contains buildscripts for the toolchain and libraries to build LV2 plugins to run on MOD software.
