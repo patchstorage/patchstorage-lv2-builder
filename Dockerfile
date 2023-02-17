@@ -28,4 +28,6 @@ ARG LV2_BUILDER_PLATFORM
 
 RUN ./bootstrap.sh $LV2_BUILDER_PLATFORM && ./.clean-install.sh $LV2_BUILDER_PLATFORM
 
+ENV QEMU_LD_PREFIX /home/builder/lv2-workdir/$LV2_BUILDER_PLATFORM/target/usr
+
 CMD ["bash"]

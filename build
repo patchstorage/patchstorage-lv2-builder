@@ -15,6 +15,8 @@ if [ -z "${PLATFORM}" ] || [ -z "${PACKAGE}" ] || [ ! -e "plugins-dep/configs/${
   exit 1
 fi
 
+export QEMU_LD_PREFIX=/home/builder/lv2-workdir/$PLATFORM/target/usr
+
 #######################################################################################################################
 # Import common code and variables
 
