@@ -88,7 +88,7 @@ index eeb27c0..78051dd 100644
 +#if defined(_MOD_DEVICE_X86_64) || defined(_MOD_DEVICE_RASPBERRYPI4) || defined(_MOD_DEVICE_DUOX)
 +	_n_samples = std::min(256u, block_size);        // buffer-size <= 256
 +	n_part     = std::min(8192u, block_size * 32u); // 128 + 256 + 1024 + 4096 or 256 + 512 + 2048 + 8192
-+#elif defined(_MOD_DEVICE_DWARF)
++#elif defined(_MOD_DEVICE_DWARF) || defined(_MOD_DEVICE_RASPBERRYPI3)
 +	_n_samples = std::min(256u, block_size);        // buffer-size <= 256
 +	n_part     = std::min(8192u, block_size * 32u); // 128 + 256 + 1024 + 4096 or 256 + 512 + 2048 + 8192
 +#elif defined(_MOD_DEVICE_DUO)
@@ -414,7 +414,7 @@ index 666e56e..ada79fb 100644
 +		MAXOUT   = 2,
 +#if defined(_MOD_DEVICE_X86_64) || defined(_MOD_DEVICE_RASPBERRYPI4) || defined(_MOD_DEVICE_DUOX)
 +		MAXLEV   = 5,
-+#elif defined(_MOD_DEVICE_DWARF)
++#elif defined(_MOD_DEVICE_DWARF) || defined(_MOD_DEVICE_RASPBERRYPI3)
 +		MAXLEV   = 4,
 +#elif defined(_MOD_DEVICE_DUO)
 +		MAXLEV   = 3,
