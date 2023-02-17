@@ -1,0 +1,16 @@
+#!/bin/sh
+d=$(date -Iseconds)
+echo Builds started at $d >> build_ok.log
+echo Builds started at $d >> build_fail.log
+for p in $(ls plugins/package/); do
+	d=$(date -Iseconds)
+	if ./docker-build $1 $p; then
+		echo $d $p >> build_ok.log
+	else
+		echo $d $p >> build_fail.log
+	fi
+done
+
+d=$(date -Iseconds)
+echo Builds finished at $d >> build_ok.log
+echo Builds finished at $d >> build_fail.log
