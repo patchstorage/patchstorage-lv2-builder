@@ -25,4 +25,7 @@ docker compose run --rm "$1" ./build $@
 
 if [ $? -eq 0 ]; then
 	echo "Build artifacts should be available in 'docker-workdir/$1'"
+	exit 0
 fi
+
+exit 1
