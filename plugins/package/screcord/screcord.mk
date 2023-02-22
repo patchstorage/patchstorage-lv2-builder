@@ -4,8 +4,8 @@
 #
 ######################################
 
-SCRECORD_VERSION = fe0d42d31fecde5ad7d3c05514cf2ecb57fd2495
-SCRECORD_SITE = $(call github,brummer10,screcord.lv2,$(SCRECORD_VERSION))
+SCRECORD_VERSION = 7025a7e52a639872fde79d46afce38ece4639d20
+SCRECORD_SITE = $(call github,BlokasLabs,screcord.lv2,$(SCRECORD_VERSION))
 SCRECORD_BUNDLES = sc_record.lv2
 
 ifdef BR2_cortex_a7
