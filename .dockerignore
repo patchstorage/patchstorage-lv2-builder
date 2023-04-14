@@ -3,4 +3,5 @@ docker-compose.yml
 docker-workdir/*
 lv2-data/*
 lv2-data-creative-commons/*
+patchstorage-lv2-data/*
 plugins/*

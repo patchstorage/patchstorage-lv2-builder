@@ -4,3 +4,6 @@
 [submodule "lv2-data-creative-commons"]
 	path = lv2-data-creative-commons
 	url = https://github.com/moddevices/lv2-data-creative-commons.git
+[submodule "patchstorage-lv2-data"]
+	path = patchstorage-lv2-data
+	url = https://github.com/patchstorage/patchstorage-lv2-data
