@@ -15,6 +15,7 @@ AETHER_PRE_DOWNLOAD_HOOKS += MOD_PLUGIN_BUILDER_DOWNLOAD_WITH_SUBMODULES
 
 define AETHER_INSTALL_TARGET_CMDS
 	cp -rL $(@D)/aether.lv2 $(TARGET_DIR)/usr/lib/lv2/
+        cp -rL $($(PKG)_PKGDIR)/aether.lv2/* $(TARGET_DIR)/usr/lib/lv2/aether.lv2/
 endef
 
 $(eval $(cmake-package))
