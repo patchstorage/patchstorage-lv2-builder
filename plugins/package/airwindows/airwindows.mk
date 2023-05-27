@@ -26,7 +26,33 @@ define AIRWINDOWS_INSTALL_TARGET_CMDS
 		echo "a lv2:Plugin ; lv2:binary <$$pl.so> ; rdfs:seeAlso <$$pl.ttl> ." >> $(@D)/bundles/Airwindows-$$pl.lv2/manifest.ttl; \
 	done)
 	cp -rL $(@D)/bundles/*.lv2 $(TARGET_DIR)/usr/lib/lv2/
+	cp -rL $($(PKG)_PKGDIR)/Airwindows-Acceleration2.lv2/* $(TARGET_DIR)/usr/lib/lv2/Airwindows-Acceleration2.lv2/
+	cp -rL $($(PKG)_PKGDIR)/Airwindows-ADClip7.lv2/* $(TARGET_DIR)/usr/lib/lv2/Airwindows-ADClip7.lv2/
+	cp -rL $($(PKG)_PKGDIR)/Airwindows-Baxandall.lv2/* $(TARGET_DIR)/usr/lib/lv2/Airwindows-Baxandall.lv2/
+	cp -rL $($(PKG)_PKGDIR)/Airwindows-Capacitor.lv2/* $(TARGET_DIR)/usr/lib/lv2/Airwindows-Capacitor.lv2/
+	cp -rL $($(PKG)_PKGDIR)/Airwindows-Capacitor2.lv2/* $(TARGET_DIR)/usr/lib/lv2/Airwindows-Capacitor2.lv2/
+	cp -rL $($(PKG)_PKGDIR)/Airwindows-Channel8.lv2/* $(TARGET_DIR)/usr/lib/lv2/Airwindows-Channel8.lv2/
+	cp -rL $($(PKG)_PKGDIR)/Airwindows-ClipOnly.lv2/* $(TARGET_DIR)/usr/lib/lv2/Airwindows-ClipOnly.lv2/
+	cp -rL $($(PKG)_PKGDIR)/Airwindows-ClipOnly2.lv2/* $(TARGET_DIR)/usr/lib/lv2/Airwindows-ClipOnly2.lv2/
+	cp -rL $($(PKG)_PKGDIR)/Airwindows-Console7Buss.lv2/* $(TARGET_DIR)/usr/lib/lv2/Airwindows-Console7Buss.lv2/
+	cp -rL $($(PKG)_PKGDIR)/Airwindows-Console7Cascade.lv2/* $(TARGET_DIR)/usr/lib/lv2/Airwindows-Console7Cascade.lv2/
+	cp -rL $($(PKG)_PKGDIR)/Airwindows-Console7Channel.lv2/* $(TARGET_DIR)/usr/lib/lv2/Airwindows-Console7Channel.lv2/
+	cp -rL $($(PKG)_PKGDIR)/Airwindows-Console7Crunch.lv2/* $(TARGET_DIR)/usr/lib/lv2/Airwindows-Console7Crunch.lv2/
+	cp -rL $($(PKG)_PKGDIR)/Airwindows-DeBess.lv2/* $(TARGET_DIR)/usr/lib/lv2/Airwindows-DeBess.lv2/
+	cp -rL $($(PKG)_PKGDIR)/Airwindows-Dyno.lv2/* $(TARGET_DIR)/usr/lib/lv2/Airwindows-Dyno.lv2/	
+	cp -rL $($(PKG)_PKGDIR)/Airwindows-EdIsDim.lv2/* $(TARGET_DIR)/usr/lib/lv2/Airwindows-EdIsDim.lv2/
+	cp -rL $($(PKG)_PKGDIR)/Airwindows-EveryTrim.lv2/* $(TARGET_DIR)/usr/lib/lv2/Airwindows-EveryTrim.lv2/
+	cp -rL $($(PKG)_PKGDIR)/Airwindows-Galactic.lv2/* $(TARGET_DIR)/usr/lib/lv2/Airwindows-Galactic.lv2/
+	cp -rL $($(PKG)_PKGDIR)/Airwindows-Mackity.lv2/* $(TARGET_DIR)/usr/lib/lv2/Airwindows-Mackity.lv2/
+	cp -rL $($(PKG)_PKGDIR)/Airwindows-MidSide.lv2/* $(TARGET_DIR)/usr/lib/lv2/Airwindows-MidSide.lv2/
+	cp -rL $($(PKG)_PKGDIR)/Airwindows-Mojo.lv2/* $(TARGET_DIR)/usr/lib/lv2/Airwindows-Mojo.lv2/	
+	cp -rL $($(PKG)_PKGDIR)/Airwindows-Nikola.lv2/* $(TARGET_DIR)/usr/lib/lv2/Airwindows-Nikola.lv2/
+	cp -rL $($(PKG)_PKGDIR)/Airwindows-PocketVerbs.lv2/* $(TARGET_DIR)/usr/lib/lv2/Airwindows-PocketVerbs.lv2/	
+	cp -rL $($(PKG)_PKGDIR)/Airwindows-Pressure5.lv2/* $(TARGET_DIR)/usr/lib/lv2/Airwindows-Pressure5.lv2/							
+	cp -rL $($(PKG)_PKGDIR)/Airwindows-Sidepass.lv2/* $(TARGET_DIR)/usr/lib/lv2/Airwindows-Sidepass.lv2/
+	cp -rL $($(PKG)_PKGDIR)/Airwindows-Spiral.lv2/* $(TARGET_DIR)/usr/lib/lv2/Airwindows-Spiral.lv2/		
 	cp -rL $($(PKG)_PKGDIR)/Airwindows-StarChild.lv2/* $(TARGET_DIR)/usr/lib/lv2/Airwindows-StarChild.lv2/
+	cp -rL $($(PKG)_PKGDIR)/Airwindows-Vibrato.lv2/* $(TARGET_DIR)/usr/lib/lv2/Airwindows-Vibrato.lv2/		
 endef
 
 $(eval $(cmake-package))
