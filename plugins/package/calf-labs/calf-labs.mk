@@ -13,7 +13,7 @@ CALF_LABS_MAKE = $(MAKE1)
 CALF_LABS_BUNDLES = calf-labs.lv2
 
 define CALF_LABS_POST_INSTALL_TARGET_MODGUIS
-	mv $(TARGET_DIR)/usr/lib/lv2/calf.lv2 $(TARGET_DIR)/usr/lib/lv2/calf-labs.lv2
+	mv $(TARGET_DIR)/usr/lib/lv2/calf-labs.lv2 $(TARGET_DIR)/usr/lib/lv2/calf-labs.lv2
 	cp -rL $($(PKG)_PKGDIR)/calf-labs.lv2/* $(TARGET_DIR)/usr/lib/lv2/calf-labs.lv2/
 endef
 

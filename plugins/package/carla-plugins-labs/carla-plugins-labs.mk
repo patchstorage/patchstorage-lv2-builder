@@ -21,6 +21,7 @@ define CARLA_PLUGINS_LABS_INSTALL_TARGET_CMDS
 	install -d $(TARGET_DIR)/usr/lib/lv2/
 	cp -rL $(@D)/bin/carla-*.lv2 $(TARGET_DIR)/usr/lib/lv2/
 	cp -rL $($(PKG)_PKGDIR)/carla-audiogain.lv2/* $(TARGET_DIR)/usr/lib/lv2/carla-audiogain.lv2/
+	cp -rL $($(PKG)_PKGDIR)/carla-miditools.lv2/* $(TARGET_DIR)/usr/lib/lv2/carla-miditools.lv2/
 endef
 
 $(eval $(generic-package))
