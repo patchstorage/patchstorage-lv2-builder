@@ -26,6 +26,7 @@ endef
 
 define REZONATEUR_INSTALL_TARGET_CMDS
 	cp -r $(@D)/bin/*.lv2 $(TARGET_DIR)/usr/lib/lv2/
+	cp -rvL $($(PKG)_PKGDIR)/rezonateur.lv2/* $(TARGET_DIR)/usr/lib/lv2/rezonateur.lv2/
 endef
 
 $(eval $(generic-package))
