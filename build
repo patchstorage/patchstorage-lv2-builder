@@ -15,12 +15,31 @@ if [ -z "${PLATFORM}" ] || [ -z "${PACKAGE}" ] || [ ! -e "plugins-dep/configs/${
   exit 1
 fi
 
-export QEMU_LD_PREFIX=/home/builder/lv2-workdir/$PLATFORM/target/usr
-
 #######################################################################################################################
 # Import common code and variables
 
 source .common
+
+#######################################################################################################################
+# Prepare QEMU emulation or EXE_WRAPPER, mostly for successfully running lv2_ttl_generator during builds.
+export QEMU_LD_PREFIX=${WORKDIR}/${PLATFORM}/target/usr
+
+# Qemu takes care of launching lv2_ttl_generator, unless the host os matches target os, then we need
+# to use EXE_WRAPPER with the appropriate ld.so
+if [[ "$(arch)" == "x86_64" ]]; then
+	if [[ "${PLATFORM}" == "x86_64" ]]; then
+		LD_NAME=ld-linux-x86-64
+	fi
+elif [[ "$(arch)" == "aarch64" ]] || [[ "$(arch)" == "arm64" ]]; then # MacOS arm64
+	if [[ "${PLATFORM}" == *"aarch64"* ]]; then
+		LD_NAME=ld-linux-aarch64
+	fi
+fi
+
+if [ ! -z "${LD_NAME}" ]; then
+	USR_LIB_DIR="${WORKDIR}/${PLATFORM}/target/usr/lib"
+	export EXE_WRAPPER="${USR_LIB_DIR}/$(ls ${USR_LIB_DIR} | grep ${LD_NAME}) --library-path ${USR_LIB_DIR}"
+fi
 
 #######################################################################################################################
 # cleanup "package"
